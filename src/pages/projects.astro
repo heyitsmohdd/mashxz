@@ -1,0 +1,76 @@
+---
+import "../styles/global.css";
+
+const projects = [
+  {
+    name: "Silo",
+    description:
+      "A platform for students to discuss coursework and connect with classmates.",
+    url: "https://siloedu.vercel.app/welcome",
+    status: "Live",
+  },
+  {
+    name: "Focuswaqt",
+    description: "A beautiful Pomodoro timer I built to help myself focus.",
+    url: "https://focuswaqt.vercel.app",
+    status: "Live",
+  },
+];
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Projects — Shariq Attar</title>
+  </head>
+  <body class="bg-neutral-950 text-neutral-200 font-sans antialiased">
+    <div class="max-w-xl mx-auto px-6">
+      <nav class="pt-10">
+        <ul class="flex gap-6 text-sm">
+          <li>
+            <a
+              href="/"
+              class="text-neutral-500 hover:text-white transition-colors"
+              >home</a>
+          </li>
+          <li>
+            <a
+              href="/blog"
+              class="text-neutral-500 hover:text-white transition-colors"
+              >blog</a>
+          </li>
+          <li><a href="/projects" class="text-white">projects</a></li>
+        </ul>
+      </nav>
+
+      <main class="py-20 space-y-12">
+        <section>
+          <h1 class="text-2xl font-semibold text-white">Projects</h1>
+          <p class="mt-2 text-neutral-400">Stuff I've built.</p>
+        </section>
+
+        <ul class="space-y-8">
+          {
+            projects.map((project) => (
+              <li class="space-y-1">
+                <div class="flex items-center gap-3">
+                  <a
+                    href={project.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-white hover:underline underline-offset-4"
+                  >
+                    {project.name}
+                  </a>
+                  <span class="text-xs text-neutral-600">{project.status}</span>
+                </div>
+                <p class="text-sm text-neutral-400">{project.description}</p>
+              </li>
+            ))
+          }
+        </ul>
+      </main>
+    </div>
+  </body>
+</html>
