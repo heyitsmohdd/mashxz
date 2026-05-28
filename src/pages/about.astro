@@ -20,22 +20,22 @@ const projects = [
     <meta charset="utf-8" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Shariq Attar" />
+    <meta name="description" content="currently playing minecraft." />
     <title>Shariq Attar</title>
   </head>
   <body class="bg-[#0a0a0a] text-neutral-200 font-sans antialiased">
     <div class="max-w-xl mx-auto px-6">
       <nav class="pt-10">
         <ul class="flex gap-6 text-sm">
-          <li><a href="/" class="text-white">home</a></li>
+          <li><a href="/about" class="text-white">home</a></li>
           <li><a href="/blog" class="text-neutral-500 hover:text-white transition-colors">blog</a></li>
-          
+
         </ul>
       </nav>
       <main class="py-20 space-y-16">
       <section>
         <h1 class="text-2xl font-semibold text-white">Shariq Attar</h1>
-        <p class="mt-2 text-neutral-400">currently playing minecraft.</p>
+        <p id="subtitle" class="mt-2 text-neutral-400"></p>
       </section>
 
       <section class="space-y-3">
@@ -53,7 +53,7 @@ const projects = [
         <h2
           class="text-sm font-medium uppercase tracking-widest text-neutral-500"
         >
-          Projects
+          stuff i built
         </h2>
         <ul class="space-y-4">
           {
@@ -94,18 +94,24 @@ const projects = [
               >GitHub</a
             >
           </li>
-          <li>
-            <a
-              href="https://x.com/heyitsmohdd"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="text-neutral-400 hover:text-white transition-colors"
-              >Twitter</a
-            >
-          </li>
         </ul>
       </section>
     </main>
     </div>
   </body>
+  <script>
+    const SUBTITLE_TEXT = "currently playing minecraft.";
+    const subtitleEl = document.getElementById('subtitle');
+    let charIndex = 0;
+
+    function typeNext() {
+      if (charIndex < SUBTITLE_TEXT.length) {
+        subtitleEl.textContent += SUBTITLE_TEXT[charIndex];
+        charIndex++;
+        setTimeout(typeNext, 65);
+      }
+    }
+
+    typeNext();
+  </script>
 </html>
