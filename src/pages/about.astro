@@ -1,18 +1,5 @@
 ---
 import "../styles/global.css";
-
-const projects = [
-  {
-    name: "Silo",
-    description: "A platform for students to discuss coursework and connect with classmates.",
-    url: "https://siloedu.vercel.app/welcome",
-  },
-  {
-    name: "Focuswaqt",
-    description: "A beautiful Pomodoro timer I built to help myself focus.",
-    url: "https://focuswaqt.vercel.app",
-  },
-];
 ---
 
 <html lang="en">
@@ -28,54 +15,13 @@ const projects = [
       <nav class="pt-10">
         <ul class="flex gap-6 text-sm">
           <li><a href="/about" class="text-white">home</a></li>
-          <li><a href="/blog" class="text-neutral-500 hover:text-white transition-colors">blog</a></li>
+          <li><a href="/" class="text-neutral-500 hover:text-white transition-colors">blog</a></li>
 
         </ul>
       </nav>
       <main class="py-20 space-y-16">
       <section>
         <h1 class="text-2xl font-semibold text-white">Shariq Attar</h1>
-        <p id="subtitle" class="mt-2 text-neutral-400"></p>
-      </section>
-
-      <section class="space-y-3">
-        <h2
-          class="text-sm font-medium uppercase tracking-widest text-neutral-500"
-        >
-          About
-        </h2>
-        <p class="text-neutral-300 leading-relaxed">
-          trying to get better at something.
-        </p>
-      </section>
-
-      <section class="space-y-4">
-        <h2
-          class="text-sm font-medium uppercase tracking-widest text-neutral-500"
-        >
-          stuff i built
-        </h2>
-        <ul class="space-y-4">
-          {
-            projects.map((project) => (
-              <li>
-                <a
-                  href={project.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="group flex flex-col gap-1"
-                >
-                  <span class="text-white group-hover:underline underline-offset-4">
-                    {project.name}
-                  </span>
-                  <span class="text-sm text-neutral-400">
-                    {project.description}
-                  </span>
-                </a>
-              </li>
-            ))
-          }
-        </ul>
       </section>
 
       <section class="space-y-3">
@@ -99,19 +45,4 @@ const projects = [
     </main>
     </div>
   </body>
-  <script>
-    const SUBTITLE_TEXT = "currently playing minecraft.";
-    const subtitleEl = document.getElementById('subtitle');
-    let charIndex = 0;
-
-    function typeNext() {
-      if (charIndex < SUBTITLE_TEXT.length) {
-        subtitleEl.textContent += SUBTITLE_TEXT[charIndex];
-        charIndex++;
-        setTimeout(typeNext, 65);
-      }
-    }
-
-    typeNext();
-  </script>
 </html>

@@ -1,5 +1,12 @@
 ---
 import "../styles/global.css";
+import { getCollection } from "astro:content";
+
+const allPosts = (await getCollection("blog")).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+const lifePosts = allPosts.filter((post) => post.data.category === "life");
+const workPosts = allPosts.filter((post) => post.data.category === "work");
 ---
 
 <html lang="en">
@@ -18,10 +25,95 @@ import "../styles/global.css";
         </ul>
       </nav>
 
-      <main class="py-20 space-y-4">
-        <h1 class="text-2xl font-semibold text-white">Blog</h1>
-        <p class="text-neutral-500">No posts yet. Writing something.</p>
+      <main class="py-20 space-y-8">
+        <div class="flex gap-1 p-1 rounded-lg bg-neutral-900 w-fit">
+          <button
+            id="tab-work"
+            class="tab-btn px-4 py-1.5 rounded-md text-sm transition-colors bg-neutral-800 text-white"
+            data-tab="work"
+          >
+            work
+          </button>
+          <button
+            id="tab-life"
+            class="tab-btn px-4 py-1.5 rounded-md text-sm transition-colors text-neutral-500 hover:text-neutral-300"
+            data-tab="life"
+          >
+            life
+          </button>
+        </div>
+
+        <div id="panel-work">
+          {workPosts.length === 0 ? (
+            <p class="text-neutral-500 text-sm">Nothing yet.</p>
+          ) : (
+            <ul class="space-y-6">
+              {workPosts.map((post) => (
+                <li>
+                  <a
+                    href={`/${post.id.replace(/\.md$/, "")}`}
+                    class="group flex flex-col gap-1"
+                  >
+                    <span class="text-neutral-200 group-hover:text-white group-hover:underline underline-offset-4 transition-colors">
+                      {post.data.title}
+                    </span>
+                    <span class="text-sm text-neutral-500">
+                      {post.data.date.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })}
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+
+        <div id="panel-life" class="hidden">
+          {lifePosts.length === 0 ? (
+            <p class="text-neutral-500 text-sm">Nothing yet.</p>
+          ) : (
+            <ul class="space-y-6">
+              {lifePosts.map((post) => (
+                <li>
+                  <a
+                    href={`/${post.id.replace(/\.md$/, "")}`}
+                    class="group flex flex-col gap-1"
+                  >
+                    <span class="text-neutral-200 group-hover:text-white group-hover:underline underline-offset-4 transition-colors">
+                      {post.data.title}
+                    </span>
+                    <span class="text-sm text-neutral-500">
+                      {post.data.date.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })}
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
       </main>
     </div>
+
+    <script>
+      const tabs = document.querySelectorAll<HTMLButtonElement>(".tab-btn");
+      const panels = { work: document.getElementById("panel-work"), life: document.getElementById("panel-life") };
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          const active = tab.dataset.tab as "work" | "life";
+
+          tabs.forEach((t) => {
+            const isActive = t.dataset.tab === active;
+            t.classList.toggle("bg-neutral-800", isActive);
+            t.classList.toggle("text-white", isActive);
+            t.classList.toggle("text-neutral-500", !isActive);
+            t.classList.toggle("hover:text-neutral-300", !isActive);
+          });
+
+          Object.entries(panels).forEach(([key, panel]) => {
+            panel?.classList.toggle("hidden", key !== active);
+          });
+        });
+      });
+    </script>
   </body>
 </html>
