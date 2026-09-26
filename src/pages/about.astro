@@ -8,103 +8,124 @@ import "../styles/global.css";
     <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Personal site of Shariq Attar" />
-    <title>About — Shariq Attar</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap"
-      rel="stylesheet"
-    />
+    <title>About — mashxz.com</title>
   </head>
-  <body class="bg-[#0e0e0c] text-[#d6d6cb] antialiased selection:bg-[#22c55e] selection:text-black min-h-screen py-6 sm:py-12 px-3 sm:px-6">
-    <div class="max-w-3xl mx-auto">
+  <body class="bg-[#555d65] text-[#222220] font-sans antialiased min-h-screen py-4 sm:py-8 px-2 sm:px-4">
+    <div class="max-w-4xl mx-auto shadow-2xl border border-[#2b180a] bg-[#f5f3ec] overflow-hidden">
       
-      <!-- Hacker News Style Container Box -->
-      <div class="bg-[#151513] border border-[#272723] rounded-sm shadow-xl overflow-hidden">
+      <!-- Top Wheat Banner Strip -->
+      <header class="bg-[#caa368] border-b-2 border-[#38200e] px-4 py-2 flex items-center justify-between text-xs font-bold text-[#38200e] select-none">
+        <nav class="flex items-center gap-3 sm:gap-6 flex-wrap [text-shadow:1px_1px_2px_rgba(0,0,0,0.25)]">
+          <a href="/" class="hover:underline text-[#2e1a0b]">writing</a>
+          <a href="https://github.com/heyitsmohdd" target="_blank" rel="noopener noreferrer" class="hover:underline text-[#2e1a0b]">github</a>
+          <a href="mailto:mashxz@poke.com" class="hover:underline text-[#2e1a0b]">gmail</a>
+        </nav>
+      </header>
+
+      <!-- Inside Page Layout with Left Corner Rail -->
+      <div class="flex flex-col md:flex-row relative">
         
-        <!-- Top HN Nav Bar -->
-        <header class="bg-[#1f1f1b] border-b border-[#2b2b26] px-3 sm:px-4 py-2 flex items-center justify-between font-mono text-xs">
-          <div class="flex items-center gap-2 sm:gap-3 flex-wrap">
-            <a
-              href="/"
-              class="w-5 h-5 bg-[#22c55e] text-black font-bold flex items-center justify-center text-[11px] leading-none rounded-[1px] hover:opacity-90 transition-opacity"
-              title="Return to blog"
-            >
-              M
-            </a>
-            <a href="/" class="font-bold text-[#f5f5f0] hover:text-[#4ade80] transition-colors">
-              mashxz
-            </a>
-            <span class="text-[#45453e]">|</span>
-            <nav class="flex items-center gap-2 text-[#99998e]">
-              <a href="/about" class="text-[#f5f5f0] hover:underline font-semibold">about</a>
-              <span class="text-[#45453e]">|</span>
-              <a href="/" class="hover:text-[#f5f5f0] hover:underline">blog</a>
-            </nav>
+        <!-- Left Corner Rail (Tom Platz style) -->
+        <aside class="md:w-56 bg-[#e8e4d8] border-b md:border-b-0 md:border-r border-[#caa368] p-4 flex flex-col justify-between shrink-0 relative overflow-hidden">
+          
+          <div class="space-y-4">
+            <!-- Left Quick Links -->
+            <div class="space-y-2 text-xs font-semibold text-[#523419]">
+              <p class="text-[11px] uppercase tracking-wider text-[#8a3e14] font-bold border-b border-[#caa368] pb-1">
+                Navigation
+              </p>
+              <ul class="space-y-1.5 pl-1">
+                <li><a href="/" class="text-[#0000cc] hover:underline">« Return to Home</a></li>
+                <li><a href="/" class="text-[#0000cc] hover:underline">» notes</a></li>
+                <li><a href="mailto:mashxz@poke.com" class="text-[#0000cc] hover:underline">» email me</a></li>
+              </ul>
+            </div>
           </div>
 
-          <div class="hidden sm:flex items-center gap-2 text-[#7f7f75] font-mono text-xs">
-            <a href="https://github.com/heyitsmohdd" target="_blank" rel="noopener noreferrer" class="hover:text-[#f5f5f0] hover:underline">
-              github
-            </a>
-          </div>
-        </header>
+        </aside>
 
         <!-- Main Profile Info -->
-        <main class="p-6 sm:p-10 space-y-8 font-mono">
-          <section class="border-b border-[#262622] pb-6">
-            <h1 class="text-2xl sm:text-3xl font-semibold text-[#f5f5f0] font-sans">
+        <main class="flex-1 p-6 sm:p-10 space-y-6 bg-[#f5f3ec]">
+          
+          <!-- Name + Photo Header -->
+          <div class="flex items-center justify-between gap-6 pb-4 border-b-2 border-[#d6ba7f]">
+            <h1 class="text-3xl sm:text-4xl font-black text-[#2e1a0b] tracking-tight [text-shadow:2px_3px_4px_rgba(40,25,10,0.35)]">
               Shariq Attar
             </h1>
-          </section>
+            <!-- Retro Round Image Placeholder -->
+            <div class="shrink-0 w-24 h-24 sm:w-28 sm:h-28 rounded-full border-4 border-[#caa368] shadow-[3px_4px_8px_rgba(0,0,0,0.35)] bg-[#e8e4d8] flex items-center justify-center overflow-hidden">
+              <span class="text-[#caa368] text-xs font-bold italic text-center leading-tight px-2">photo<br/>here</span>
+            </div>
+          </div>
 
-          <!-- Retro Bio / Details Table -->
-          <section class="space-y-4 text-xs text-[#cecec2]">
-            <table class="w-full text-left border-collapse">
-              <tbody class="divide-y divide-[#22221e]">
-                <tr>
-                  <td class="py-2.5 text-[#737368] w-28 align-top">about:</td>
-                  <td class="py-2.5 text-[#deded4] font-sans leading-relaxed text-sm">
-                    building, tinkering, and trying to solve problems.
-                  </td>
-                </tr>
-                <tr>
-                  <td class="py-2.5 text-[#737368] align-top">github:</td>
-                  <td class="py-2.5">
-                    <a
-                      href="https://github.com/heyitsmohdd"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="text-[#4ade80] hover:underline"
-                    >
-                      github.com/heyitsmohdd ↗
-                    </a>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="py-2.5 text-[#737368] align-top">email:</td>
-                  <td class="py-2.5">
-                    <a
-                      href="mailto:mashxz@poke.com"
-                      class="text-[#4ade80] hover:underline"
-                    >
-                      mashxz@poke.com ↗
-                    </a>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="py-2.5 text-[#737368] align-top">interests:</td>
-                  <td class="py-2.5 text-[#a8a89c]">
-                    software, philosophy, history, sometimes i write
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </section>
+          <hr class="border-t border-[#caa368]" />
+
+          <!-- Tom Platz Style Sectional Cards -->
+          <div class="space-y-8">
+            
+            <!-- Section 1: Spirit -->
+            <section class="space-y-2">
+              <h2 class="text-lg font-bold italic text-[#8a3e14]">about</h2>
+              <div class="bg-[#ebe6d8] border border-[#caa368] p-4 text-sm leading-relaxed text-[#2e1a0b] rounded-[2px]">
+                <p class="italic font-medium">
+                  "building, tinkering, and trying to solve problems."
+                </p>
+              </div>
+            </section>
+
+            <!-- Section 2: Mind -->
+            <section class="space-y-2">
+              <h2 class="text-lg font-bold italic text-[#8a3e14]">into</h2>
+              <div class="bg-[#ebe6d8] border border-[#caa368] p-4 text-sm leading-relaxed text-[#2e1a0b] rounded-[2px]">
+                <p>
+                  software, philosophy, history — sometimes i write.
+                </p>
+              </div>
+            </section>
+
+            <!-- Section 3: Connectivity -->
+            <section class="space-y-2">
+              <h2 class="text-lg font-bold italic text-[#8a3e14]">links</h2>
+              <table class="w-full text-left border-collapse text-xs sm:text-sm">
+                <tbody class="divide-y divide-[#dcd2ba]">
+                  <tr>
+                    <td class="py-2.5 font-bold text-[#8a3e14] w-28 align-top">GitHub:</td>
+                    <td class="py-2.5">
+                      <a
+                        href="https://github.com/heyitsmohdd"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-[#0000cc] underline font-semibold"
+                      >
+                        github.com/heyitsmohdd ↗
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="py-2.5 font-bold text-[#8a3e14] align-top">E-Mail:</td>
+                    <td class="py-2.5">
+                      <a
+                        href="mailto:mashxz@poke.com"
+                        class="text-[#0000cc] underline font-semibold"
+                      >
+                        mashxz@poke.com ↗
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </section>
+
+          </div>
+
+          <hr class="border-t-2 border-[#d6ba7f] mt-8" />
 
         </main>
 
       </div>
+
+
+
     </div>
   </body>
 </html>

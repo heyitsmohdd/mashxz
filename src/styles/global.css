@@ -6,12 +6,6 @@ body {
   background-size: cover;
   background-position: center 20%;
   background-repeat: no-repeat;
-  animation: twinkle 6s ease-in-out infinite;
-}
-
-@keyframes twinkle {
-  0%, 100% { filter: brightness(1); }
-  50% { filter: brightness(1.25); }
 }
 
 a:active {
