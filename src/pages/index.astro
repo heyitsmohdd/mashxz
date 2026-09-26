@@ -14,88 +14,173 @@ const workPosts = allPosts.filter((post) => post.data.category === "work");
     <meta charset="utf-8" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Essays and notes by Shariq Attar" />
     <title>Blog — Shariq Attar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap"
+      rel="stylesheet"
+    />
   </head>
-  <body class="bg-neutral-950 text-neutral-200 font-sans antialiased">
-    <div class="max-w-xl mx-auto px-6">
-      <nav class="pt-10">
-        <ul class="flex gap-6 text-sm">
-          <li><a href="/about" class="text-neutral-500 hover:text-white transition-colors">home</a></li>
-          <li><a href="/" class="text-white">blog</a></li>
-        </ul>
-      </nav>
+  <body class="bg-[#0e0e0c] text-[#d6d6cb] antialiased selection:bg-[#22c55e] selection:text-black min-h-screen py-6 sm:py-12 px-3 sm:px-6">
+    <div class="max-w-3xl mx-auto">
+      
+      <!-- Hacker News Style Container Box -->
+      <div class="bg-[#151513] border border-[#272723] rounded-sm shadow-xl overflow-hidden">
+        
+        <!-- Top HN Nav Bar -->
+        <header class="bg-[#1f1f1b] border-b border-[#2b2b26] px-3 sm:px-4 py-2 flex items-center justify-between font-mono text-xs">
+          <div class="flex items-center gap-2 sm:gap-3 flex-wrap">
+            <a
+              href="/"
+              class="w-5 h-5 bg-[#22c55e] text-black font-bold flex items-center justify-center text-[11px] leading-none rounded-[1px] hover:opacity-90 transition-opacity"
+              title="Return to blog"
+            >
+              M
+            </a>
+            <a href="/" class="font-bold text-[#f5f5f0] hover:text-[#4ade80] transition-colors">
+              mashxz
+            </a>
+            <span class="text-[#45453e]">|</span>
+            <nav class="flex items-center gap-2 text-[#99998e]">
+              <a href="/about" class="hover:text-[#f5f5f0] hover:underline">about</a>
+              <span class="text-[#45453e]">|</span>
+              <a href="/" class="text-[#f5f5f0] hover:underline font-semibold">blog</a>
+            </nav>
+          </div>
 
-      <main class="py-20 space-y-8">
-        <div class="flex gap-1 p-1 rounded-lg bg-neutral-900 w-fit">
-          <button
-            id="tab-work"
-            class="tab-btn px-4 py-1.5 rounded-md text-sm transition-colors text-neutral-500 hover:text-neutral-300"
-            data-tab="work"
-          >
-            work
-          </button>
-          <button
-            id="tab-life"
-            class="tab-btn px-4 py-1.5 rounded-md text-sm transition-colors bg-neutral-800 text-white"
-            data-tab="life"
-          >
-            life
-          </button>
+          <!-- Right Nav -->
+          <div class="hidden sm:flex items-center gap-2 text-[#7f7f75]">
+            <a href="https://github.com/heyitsmohdd" target="_blank" rel="noopener noreferrer" class="hover:text-[#f5f5f0] hover:underline">
+              github
+            </a>
+          </div>
+        </header>
+
+        <!-- Subheader with Filter Tabs -->
+        <div class="bg-[#181815] border-b border-[#242420] px-4 sm:px-6 py-2.5 flex items-center justify-between font-mono text-xs">
+          <div class="flex items-center gap-2">
+            <span class="text-[#6e6e64] text-[11px] uppercase tracking-wider mr-1">feed:</span>
+            <button
+              id="tab-life"
+              class="tab-btn px-2.5 py-1 rounded-[2px] transition-colors bg-[#262621] text-[#4ade80] border border-[#3d3d34] cursor-pointer"
+              data-tab="life"
+            >
+              life ({lifePosts.length})
+            </button>
+            <button
+              id="tab-work"
+              class="tab-btn px-2.5 py-1 rounded-[2px] transition-colors text-[#88887e] hover:text-[#deded4] border border-transparent cursor-pointer"
+              data-tab="work"
+            >
+              work ({workPosts.length})
+            </button>
+          </div>
         </div>
 
-        <div id="panel-work" class="hidden">
-          {workPosts.length === 0 ? (
-            <p class="text-neutral-500 text-sm">Nothing yet.</p>
-          ) : (
-            <ul class="space-y-6">
-              {workPosts.map((post) => (
-                <li>
-                  <a
-                    href={`/${post.id.replace(/\.md$/, "")}`}
-                    class="group flex flex-col gap-1"
-                  >
-                    <span class="text-neutral-200 group-hover:text-white group-hover:underline underline-offset-4 transition-colors">
-                      {post.data.title}
+        <!-- Main Blog Listing -->
+        <main class="p-4 sm:p-6 min-h-[320px]">
+          
+          <!-- Life Posts Panel (Default Active) -->
+          <div id="panel-life">
+            {lifePosts.length === 0 ? (
+              <p class="text-[#707066] text-sm py-6">Nothing yet.</p>
+            ) : (
+              <ol class="space-y-4">
+                {lifePosts.map((post, index) => (
+                  <li class="flex items-start gap-2.5 group">
+                    <!-- Rank Number -->
+                    <span class="font-mono text-xs text-[#6b6b60] w-5 text-right pt-0.5 select-none">
+                      {index + 1}.
                     </span>
-                    <span class="text-sm text-neutral-500">
-                      {post.data.date.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })}
-                    </span>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
 
-        <div id="panel-life">
-          {lifePosts.length === 0 ? (
-            <p class="text-neutral-500 text-sm">Nothing yet.</p>
-          ) : (
-            <ul class="space-y-6">
-              {lifePosts.map((post) => (
-                <li>
-                  <a
-                    href={`/${post.id.replace(/\.md$/, "")}`}
-                    class="group flex flex-col gap-1"
-                  >
-                    <span class="text-neutral-200 group-hover:text-white group-hover:underline underline-offset-4 transition-colors">
-                      {post.data.title}
+                    <!-- HN Upvote Caret -->
+                    <span class="text-[#22c55e] text-xs pt-0.5 select-none" title="Upvoted">
+                      ▲
                     </span>
-                    <span class="text-sm text-neutral-500">
-                      {post.data.date.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })}
+
+                    <!-- Post Info -->
+                    <div class="space-y-1">
+                      <div class="flex items-baseline gap-2 flex-wrap">
+                        <a
+                          href={`/${post.id.replace(/\.md$/, "")}`}
+                          class="text-[#eaeae0] group-hover:text-[#4ade80] font-medium text-sm sm:text-[15px] transition-colors"
+                        >
+                          {post.data.title}
+                        </a>
+                        <span class="text-xs font-mono text-[#68685e]">
+                          ({post.id.replace(/\.md$/, "")})
+                        </span>
+                      </div>
+
+                      <!-- Metadata Subtext -->
+                      <div class="flex items-center gap-2 flex-wrap font-mono text-[11px] text-[#78786e]">
+                        <time datetime={post.data.date.toISOString()}>
+                          {post.data.date.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })}
+                        </time>
+                        <span>•</span>
+                        <span class="text-[#4ade80]">[{post.data.category}]</span>
+                      </div>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            )}
+          </div>
+
+          <!-- Work Posts Panel (Hidden by Default) -->
+          <div id="panel-work" class="hidden">
+            {workPosts.length === 0 ? (
+              <p class="text-[#707066] text-sm py-6">Nothing yet.</p>
+            ) : (
+              <ol class="space-y-4">
+                {workPosts.map((post, index) => (
+                  <li class="flex items-start gap-2.5 group">
+                    <span class="font-mono text-xs text-[#6b6b60] w-5 text-right pt-0.5 select-none">
+                      {index + 1}.
                     </span>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
-      </main>
+                    <span class="text-[#22c55e] text-xs pt-0.5 select-none">
+                      ▲
+                    </span>
+                    <div class="space-y-1">
+                      <div class="flex items-baseline gap-2 flex-wrap">
+                        <a
+                          href={`/${post.id.replace(/\.md$/, "")}`}
+                          class="text-[#eaeae0] group-hover:text-[#4ade80] font-medium text-sm sm:text-[15px] transition-colors"
+                        >
+                          {post.data.title}
+                        </a>
+                        <span class="text-xs font-mono text-[#68685e]">
+                          ({post.id.replace(/\.md$/, "")})
+                        </span>
+                      </div>
+                      <div class="flex items-center gap-2 flex-wrap font-mono text-[11px] text-[#78786e]">
+                        <time datetime={post.data.date.toISOString()}>
+                          {post.data.date.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })}
+                        </time>
+                        <span>•</span>
+                        <span class="text-[#4ade80]">[{post.data.category}]</span>
+                      </div>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            )}
+          </div>
+
+        </main>
+
+      </div>
     </div>
 
+    <!-- Retro Tab Switching Logic -->
     <script>
       const tabs = document.querySelectorAll<HTMLButtonElement>(".tab-btn");
-      const panels = { work: document.getElementById("panel-work"), life: document.getElementById("panel-life") };
+      const panels = {
+        work: document.getElementById("panel-work"),
+        life: document.getElementById("panel-life"),
+      };
 
       tabs.forEach((tab) => {
         tab.addEventListener("click", () => {
@@ -103,10 +188,11 @@ const workPosts = allPosts.filter((post) => post.data.category === "work");
 
           tabs.forEach((t) => {
             const isActive = t.dataset.tab === active;
-            t.classList.toggle("bg-neutral-800", isActive);
-            t.classList.toggle("text-white", isActive);
-            t.classList.toggle("text-neutral-500", !isActive);
-            t.classList.toggle("hover:text-neutral-300", !isActive);
+            t.classList.toggle("bg-[#262621]", isActive);
+            t.classList.toggle("text-[#4ade80]", isActive);
+            t.classList.toggle("border-[#3d3d34]", isActive);
+            t.classList.toggle("text-[#88887e]", !isActive);
+            t.classList.toggle("border-transparent", !isActive);
           });
 
           Object.entries(panels).forEach(([key, panel]) => {

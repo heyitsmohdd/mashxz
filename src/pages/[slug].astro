@@ -19,30 +19,122 @@ const { Content } = await render(post);
     <meta charset="utf-8" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content={post.data.description} />
+    <meta name="description" content={post.data.description || post.data.title} />
     <title>{post.data.title} — Shariq Attar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap"
+      rel="stylesheet"
+    />
   </head>
-  <body class="bg-[#0a0a0a] text-neutral-200 font-sans antialiased">
-    <div class="max-w-xl mx-auto px-6">
-      <nav class="pt-10">
-        <ul class="flex gap-6 text-sm">
-          <li><a href="/about" class="text-neutral-500 hover:text-white transition-colors">home</a></li>
-          <li><a href="/" class="text-neutral-500 hover:text-white transition-colors">blog</a></li>
-        </ul>
-      </nav>
+  <body class="bg-[#0e0e0c] text-[#d6d6cb] antialiased selection:bg-[#22c55e] selection:text-black min-h-screen py-6 sm:py-12 px-3 sm:px-6">
+    <div class="max-w-3xl mx-auto">
+      
+      <!-- Hacker News Style Container Box -->
+      <div class="bg-[#151513] border border-[#272723] rounded-sm shadow-xl overflow-hidden">
+        
+        <!-- Top HN Nav Bar -->
+        <header class="bg-[#1f1f1b] border-b border-[#2b2b26] px-3 sm:px-4 py-2 flex items-center justify-between font-mono text-xs">
+          <div class="flex items-center gap-2 sm:gap-3 flex-wrap">
+            <!-- Green Logo Badge -->
+            <a
+              href="/"
+              class="w-5 h-5 bg-[#22c55e] text-black font-bold flex items-center justify-center text-[11px] leading-none rounded-[1px] hover:opacity-90 transition-opacity"
+              title="Return to blog"
+            >
+              M
+            </a>
+            <a href="/" class="font-bold text-[#f5f5f0] hover:text-[#4ade80] transition-colors">
+              mashxz
+            </a>
+            <span class="text-[#45453e]">|</span>
+            <nav class="flex items-center gap-2 text-[#99998e]">
+              <a href="/about" class="hover:text-[#f5f5f0] hover:underline">about</a>
+              <span class="text-[#45453e]">|</span>
+              <a href="/" class="text-[#f5f5f0] hover:underline">blog</a>
+            </nav>
+          </div>
 
-      <main class="py-20 space-y-8">
-        <section class="space-y-2">
-          <h1 class="text-2xl font-semibold text-white">{post.data.title}</h1>
-          <p class="text-sm text-neutral-500">
-            {post.data.date.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
-          </p>
-        </section>
+          <!-- Right Nav -->
+          <div class="hidden sm:flex items-center gap-2 text-[#7f7f75]">
+            <a href="https://github.com/heyitsmohdd" target="_blank" rel="noopener noreferrer" class="hover:text-[#f5f5f0] hover:underline">
+              github
+            </a>
+          </div>
+        </header>
 
-        <article class="prose prose-invert prose-neutral max-w-none">
-          <Content />
-        </article>
-      </main>
+        <!-- Article Container -->
+        <main class="p-6 sm:p-10 space-y-8">
+          
+          <!-- Post Header -->
+          <section class="border-b border-[#242420] pb-6 space-y-2">
+            <h1 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#f4f4ee] font-sans">
+              {post.data.title}
+            </h1>
+
+            <!-- Metadata Row -->
+            <div class="flex items-center gap-2 flex-wrap font-mono text-xs text-[#808075]">
+              <time datetime={post.data.date.toISOString()}>
+                {post.data.date.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })}
+              </time>
+              <span>•</span>
+              <span class="text-[#4ade80]">[{post.data.category}]</span>
+            </div>
+          </section>
+
+          <!-- Main Article Body -->
+          <article class="prose prose-invert max-w-none font-['Newsreader',Georgia,serif] text-[18px] leading-[1.8] text-[#cecec2]
+            prose-p:mb-5
+            prose-p:first-of-type:first-letter:float-left
+            prose-p:first-of-type:first-letter:text-5xl
+            prose-p:first-of-type:first-letter:pr-3
+            prose-p:first-of-type:first-letter:pt-1
+            prose-p:first-of-type:first-letter:font-sans
+            prose-p:first-of-type:first-letter:font-bold
+            prose-p:first-of-type:first-letter:text-[#4ade80]
+            prose-headings:text-[#f2f2eb]
+            prose-headings:font-sans
+            prose-a:text-[#4ade80]
+            prose-a:underline
+            prose-a:underline-offset-4
+            prose-blockquote:border-l-2
+            prose-blockquote:border-[#22c55e]
+            prose-blockquote:pl-4
+            prose-blockquote:text-[#a8a89a]
+            prose-blockquote:italic
+            prose-strong:text-[#f4f4ee]
+          ">
+            <Content />
+          </article>
+
+          <!-- End of Article Retro Marker -->
+          <div class="pt-6 border-t border-[#242420] flex items-center justify-between text-xs font-mono text-[#78786e]">
+            <div class="flex items-center gap-2">
+              <span class="text-[#22c55e]">■</span>
+              <span>[EOF: {post.id.replace(/\.md$/, "")}]</span>
+            </div>
+            <a href="/" class="hover:text-[#f5f5f0] hover:underline">
+              ← back to all posts
+            </a>
+          </div>
+
+          <!-- Casual Feedback / Thoughts Note -->
+          <section class="pt-6 border-t border-[#242420] text-sm text-[#99998e] leading-relaxed">
+            <p>
+              Feel free to send your thoughts or reflections to
+              <a
+                href={`mailto:mashxz@poke.com?subject=Thoughts%20on%20${encodeURIComponent(post.data.title)}`}
+                class="text-[#4ade80] hover:underline"
+              >
+                mashxz@poke.com
+              </a>.
+            </p>
+          </section>
+
+        </main>
+
+      </div>
     </div>
   </body>
 </html>
