@@ -1,6 +1,6 @@
 ---
-import "../styles/global.css";
 import { getCollection } from "astro:content";
+import Page from "../layouts/Page.astro";
 
 const allPosts = (await getCollection("blog")).sort(
     (a, b) => b.data.date.getTime() - a.data.date.getTime(),
@@ -9,250 +9,201 @@ const lifePosts = allPosts.filter((post) => post.data.category === "life");
 const workPosts = allPosts.filter((post) => post.data.category === "work");
 ---
 
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <link rel="icon" type="image/png" href="/favicon.png" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="description" content="Shariq Attar's Official Website" />
-        <title>Shariq Attar</title>
-    </head>
-    <body class="bg-[#555d65] text-[#222220] font-sans antialiased min-h-screen py-4 sm:py-8 px-2 sm:px-4">
-        <div class="max-w-4xl mx-auto shadow-2xl border border-[#2b180a] bg-[#f5f3ec] overflow-hidden">
-            <!-- Top Wheat Banner Strip -->
-            <header class="bg-[#caa368] border-b-2 border-[#38200e] px-4 py-2 flex items-center justify-between text-xs font-bold text-[#38200e] select-none">
-                <nav class="flex items-center gap-3 sm:gap-6 flex-wrap [text-shadow:1px_1px_2px_rgba(0,0,0,0.25)]">
-                    <a
-                        href="/"
-                        class="hover:underline text-[#2e1a0b] underline"
-                    >
-                        writing
-                    </a>
-                    <a
-                        href="https://github.com/heyitsmohdd"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="hover:underline text-[#2e1a0b]"
-                    >
-                        github
-                    </a>
-                    <a
-                        href="mailto:mashxz@poke.com"
-                        class="hover:underline text-[#2e1a0b]"
-                    >
-                        gmail
-                    </a>
-                </nav>
-            </header>
+<Page title="Shariq Attar" description="Shariq Attar's Official Website">
+    <main class="p-6 sm:p-10 relative">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center relative">
+            <div class="md:col-span-7 space-y-5 z-10 flex flex-col justify-center">
+                <h1 class="text-4xl sm:text-5xl font-black text-[#2e1a0b] tracking-tight leading-tight [text-shadow:2px_3px_4px_rgba(40,25,10,0.35)]">
+                    shariq attar.
+                </h1>
+                <p class="text-base sm:text-lg text-[#523419] font-medium leading-relaxed max-w-xs">
+                    i build things, think too much,
+                    <br />
+                    and occasionally write about it.
+                </p>
+                <p class="text-sm text-[#735232] italic">
+                    software — philosophy — whatever else catches my eye.
+                </p>
+                <a
+                    href="#writings"
+                    class="inline-flex items-center gap-2 text-sm font-bold text-[#7c2d12] italic hover:gap-3 transition-all duration-200"
+                    onclick="document.getElementById('writings').scrollIntoView({behavior:'smooth'}); return false;"
+                >
+                    ↓ read the writing
+                </a>
+            </div>
 
-            <!-- Main Splash & Diagram Section -->
-            <main class="p-6 sm:p-10 relative">
-                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center relative">
-                    <!-- Left: Casual Intro -->
-                    <div class="md:col-span-7 space-y-5 z-10 flex flex-col justify-center">
-                        <h1 class="text-4xl sm:text-5xl font-black text-[#2e1a0b] tracking-tight leading-tight [text-shadow:2px_3px_4px_rgba(40,25,10,0.35)]">
-                            shariq attar.
-                        </h1>
-                        <p class="text-base sm:text-lg text-[#523419] font-medium leading-relaxed max-w-xs">
-                            i build things, think too much,
-                            <br />
-                            and occasionally write about it.
-                        </p>
-                        <p class="text-sm text-[#735232] italic">
-                            software — philosophy — whatever else catches my
-                            eye.
-                        </p>
-                        <a
-                            href="#writings"
-                            class="inline-flex items-center gap-2 text-sm font-bold text-[#7c2d12] italic hover:gap-3 transition-all duration-200"
-                            onclick="document.getElementById('writings').scrollIntoView({behavior:'smooth'}); return false;"
-                        >
-                            ↓ read the writing
-                        </a>
-                    </div>
+            <div class="md:col-span-5 flex justify-center relative">
+                <div class="relative w-64 sm:w-72">
+                    <svg
+                        class="absolute -top-6 -left-10 w-full h-full pointer-events-none text-[#523419] opacity-40 hidden sm:block"
+                        viewBox="0 0 200 200"
+                        fill="none"
+                    >
+                        <path
+                            d="M 20 180 C 20 20, 180 20, 180 140 C 180 180, 80 180, 80 140"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                        />
+                    </svg>
 
-                    <!-- Right: Hero Cutout / Statue Graphic with Vintage Oval Curve -->
-                    <div class="md:col-span-5 flex justify-center relative">
-                        <div class="relative w-64 sm:w-72">
-                            <!-- Vintage Vector Loop Arch behind statue -->
-                            <svg
-                                class="absolute -top-6 -left-10 w-full h-full pointer-events-none text-[#523419] opacity-40 hidden sm:block"
-                                viewBox="0 0 200 200"
-                                fill="none"
-                            >
-                                <path
-                                    d="M 20 180 C 20 20, 180 20, 180 140 C 180 180, 80 180, 80 140"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                    stroke-linecap="round"
-                                />
-                            </svg>
-
-                            <img
-                                src="/hero-statue.jpg"
-                                alt="Classical Stoic Thinker Statue"
-                                class="w-full h-auto object-contain rounded-sm filter contrast-125 brightness-95 drop-shadow-[4px_6px_10px_rgba(0,0,0,0.5)] border border-[#caa368]"
-                            />
-                        </div>
-                    </div>
+                    <img
+                        src="/hero-statue.jpg"
+                        alt="Classical Stoic Thinker Statue"
+                        class="w-full h-auto object-contain rounded-sm filter contrast-125 brightness-95 drop-shadow-[4px_6px_10px_rgba(0,0,0,0.5)] border border-[#caa368]"
+                    />
                 </div>
-
-                <!-- Horizontal Divider Rule (2001 Style) -->
-                <hr class="border-t-2 border-[#d6ba7f] my-10" />
-
-                <!-- Writings & Essays Feed -->
-                <section id="writings" class="space-y-6 scroll-mt-6">
-                    <div class="flex items-center justify-between border-b-2 border-[#caa368] pb-2">
-                        <h2 class="text-xl sm:text-2xl font-bold italic text-[#8a3e14] [text-shadow:1px_1px_2px_rgba(0,0,0,0.15)]">
-                            notes
-                        </h2>
-
-                        <!-- 2001 Tab Buttons -->
-                        <div class="flex gap-2">
-                            <button
-                                id="tab-life"
-                                class="tab-btn px-3 py-1 text-xs font-bold transition-colors bg-[#38200e] text-[#caa368] border border-[#2b180a] cursor-pointer"
-                                data-tab="life"
-                            >
-                                life ({lifePosts.length})
-                            </button>
-                            <button
-                                id="tab-work"
-                                class="tab-btn px-3 py-1 text-xs font-bold transition-colors bg-[#caa368] text-[#38200e] hover:bg-[#bfa268] border border-[#2b180a] cursor-pointer"
-                                data-tab="work"
-                            >
-                                work ({workPosts.length})
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Life Posts Panel (Default Active) -->
-                    <div id="panel-life">
-                        {lifePosts.length === 0 ? (
-                            <p class="text-[#735232] text-sm py-4 italic">
-                                Nothing yet.
-                            </p>
-                        ) : (
-                            <ul class="divide-y divide-[#e3d8be]">
-                                {lifePosts.map((post) => (
-                                    <li class="py-3 flex items-baseline justify-between gap-4 flex-wrap group">
-                                        <div class="flex items-baseline gap-2">
-                                            <span class="text-[#8a3e14] font-bold select-none">
-                                                »
-                                            </span>
-                                            <a
-                                                href={`/${post.id.replace(/\.md$/, "")}`}
-                                                class="text-[#0000cc] hover:underline font-bold text-base transition-colors"
-                                            >
-                                                {post.data.title}
-                                            </a>
-                                            <span class="text-xs text-[#6e5138]">
-                                                ({post.id.replace(/\.md$/, "")})
-                                            </span>
-                                        </div>
-
-                                        <div class="flex items-center gap-2 text-xs text-[#6e5138]">
-                                            <time
-                                                datetime={post.data.date.toISOString()}
-                                            >
-                                                {post.data.date.toLocaleDateString(
-                                                    "en-US",
-                                                    {
-                                                        year: "numeric",
-                                                        month: "short",
-                                                        day: "numeric",
-                                                    },
-                                                )}
-                                            </time>
-                                            <span>•</span>
-                                            <span class="text-[#8a3e14] font-semibold">
-                                                [{post.data.category}]
-                                            </span>
-                                        </div>
-                                    </li>
-                                ))}
-                            </ul>
-                        )}
-                    </div>
-
-                    <!-- Work Posts Panel (Hidden by Default) -->
-                    <div id="panel-work" class="hidden">
-                        {workPosts.length === 0 ? (
-                            <p class="text-[#735232] text-sm py-4 italic">
-                                Nothing yet.
-                            </p>
-                        ) : (
-                            <ul class="divide-y divide-[#e3d8be]">
-                                {workPosts.map((post) => (
-                                    <li class="py-3 flex items-baseline justify-between gap-4 flex-wrap group">
-                                        <div class="flex items-baseline gap-2">
-                                            <span class="text-[#8a3e14] font-bold select-none">
-                                                »
-                                            </span>
-                                            <a
-                                                href={`/${post.id.replace(/\.md$/, "")}`}
-                                                class="text-[#0000cc] hover:underline font-bold text-base transition-colors"
-                                            >
-                                                {post.data.title}
-                                            </a>
-                                            <span class="text-xs text-[#6e5138]">
-                                                ({post.id.replace(/\.md$/, "")})
-                                            </span>
-                                        </div>
-
-                                        <div class="flex items-center gap-2 text-xs text-[#6e5138]">
-                                            <time
-                                                datetime={post.data.date.toISOString()}
-                                            >
-                                                {post.data.date.toLocaleDateString(
-                                                    "en-US",
-                                                    {
-                                                        year: "numeric",
-                                                        month: "short",
-                                                        day: "numeric",
-                                                    },
-                                                )}
-                                            </time>
-                                            <span>•</span>
-                                            <span class="text-[#8a3e14] font-semibold">
-                                                [{post.data.category}]
-                                            </span>
-                                        </div>
-                                    </li>
-                                ))}
-                            </ul>
-                        )}
-                    </div>
-                </section>
-            </main>
+            </div>
         </div>
 
-        <!-- Tab Switching Logic -->
-        <script>
-            const tabs =
-                document.querySelectorAll<HTMLButtonElement>(".tab-btn");
-            const panels = {
-                work: document.getElementById("panel-work"),
-                life: document.getElementById("panel-life"),
-            };
+        <hr class="border-t-2 border-[#d6ba7f] my-10" />
 
-            tabs.forEach((tab) => {
-                tab.addEventListener("click", () => {
-                    const active = tab.dataset.tab as "work" | "life";
+        <section id="writings" class="space-y-6 scroll-mt-6">
+            <div class="flex items-center justify-between border-b-2 border-[#caa368] pb-2">
+                <h2 class="text-xl sm:text-2xl font-bold italic text-[#8a3e14] [text-shadow:1px_1px_2px_rgba(0,0,0,0.15)]">
+                    notes
+                </h2>
 
-                    tabs.forEach((t) => {
-                        const isActive = t.dataset.tab === active;
-                        t.classList.toggle("bg-[#38200e]", isActive);
-                        t.classList.toggle("text-[#caa368]", isActive);
-                        t.classList.toggle("bg-[#caa368]", !isActive);
-                        t.classList.toggle("text-[#38200e]", !isActive);
-                    });
+                <div class="flex gap-2">
+                    <button
+                        id="tab-life"
+                        class="tab-btn px-3 py-1 text-xs font-bold transition-colors bg-[#38200e] text-[#caa368] border border-[#2b180a] cursor-pointer"
+                        data-tab="life"
+                    >
+                        life ({lifePosts.length})
+                    </button>
+                    <button
+                        id="tab-work"
+                        class="tab-btn px-3 py-1 text-xs font-bold transition-colors bg-[#caa368] text-[#38200e] hover:bg-[#bfa268] border border-[#2b180a] cursor-pointer"
+                        data-tab="work"
+                    >
+                        work ({workPosts.length})
+                    </button>
+                </div>
+            </div>
 
-                    Object.entries(panels).forEach(([key, panel]) => {
-                        panel?.classList.toggle("hidden", key !== active);
-                    });
-                });
+            <div id="panel-life">
+                {lifePosts.length === 0 ? (
+                    <p class="text-[#735232] text-sm py-4 italic">
+                        Nothing yet.
+                    </p>
+                ) : (
+                    <ul class="divide-y divide-[#e3d8be]">
+                        {lifePosts.map((post) => (
+                            <li class="py-3 flex items-baseline justify-between gap-4 flex-wrap group">
+                                <div class="flex items-baseline gap-2">
+                                    <span class="text-[#8a3e14] font-bold select-none">
+                                        »
+                                    </span>
+                                    <a
+                                        href={`/${post.id.replace(/\.md$/, "")}`}
+                                        class="text-[#0000cc] hover:underline font-bold text-base transition-colors"
+                                    >
+                                        {post.data.title}
+                                    </a>
+                                    <span class="text-xs text-[#6e5138]">
+                                        ({post.id.replace(/\.md$/, "")})
+                                    </span>
+                                </div>
+
+                                <div class="flex items-center gap-2 text-xs text-[#6e5138]">
+                                    <time
+                                        datetime={post.data.date.toISOString()}
+                                    >
+                                        {post.data.date.toLocaleDateString(
+                                            "en-US",
+                                            {
+                                                year: "numeric",
+                                                month: "short",
+                                                day: "numeric",
+                                            },
+                                        )}
+                                    </time>
+                                    <span>•</span>
+                                    <span class="text-[#8a3e14] font-semibold">
+                                        [{post.data.category}]
+                                    </span>
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
+                )}
+            </div>
+
+            <div id="panel-work" class="hidden">
+                {workPosts.length === 0 ? (
+                    <p class="text-[#735232] text-sm py-4 italic">
+                        Nothing yet.
+                    </p>
+                ) : (
+                    <ul class="divide-y divide-[#e3d8be]">
+                        {workPosts.map((post) => (
+                            <li class="py-3 flex items-baseline justify-between gap-4 flex-wrap group">
+                                <div class="flex items-baseline gap-2">
+                                    <span class="text-[#8a3e14] font-bold select-none">
+                                        »
+                                    </span>
+                                    <a
+                                        href={`/${post.id.replace(/\.md$/, "")}`}
+                                        class="text-[#0000cc] hover:underline font-bold text-base transition-colors"
+                                    >
+                                        {post.data.title}
+                                    </a>
+                                    <span class="text-xs text-[#6e5138]">
+                                        ({post.id.replace(/\.md$/, "")})
+                                    </span>
+                                </div>
+
+                                <div class="flex items-center gap-2 text-xs text-[#6e5138]">
+                                    <time
+                                        datetime={post.data.date.toISOString()}
+                                    >
+                                        {post.data.date.toLocaleDateString(
+                                            "en-US",
+                                            {
+                                                year: "numeric",
+                                                month: "short",
+                                                day: "numeric",
+                                            },
+                                        )}
+                                    </time>
+                                    <span>•</span>
+                                    <span class="text-[#8a3e14] font-semibold">
+                                        [{post.data.category}]
+                                    </span>
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
+                )}
+            </div>
+        </section>
+    </main>
+</Page>
+
+<script>
+    const tabs = document.querySelectorAll<HTMLButtonElement>(".tab-btn");
+    const panels = {
+        work: document.getElementById("panel-work"),
+        life: document.getElementById("panel-life"),
+    };
+
+    tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+            const active = tab.dataset.tab as "work" | "life";
+
+            tabs.forEach((t) => {
+                const isActive = t.dataset.tab === active;
+                t.classList.toggle("bg-[#38200e]", isActive);
+                t.classList.toggle("text-[#caa368]", isActive);
+                t.classList.toggle("bg-[#caa368]", !isActive);
+                t.classList.toggle("text-[#38200e]", !isActive);
             });
-        </script>
-    </body>
-</html>
+
+            Object.entries(panels).forEach(([key, panel]) => {
+                panel?.classList.toggle("hidden", key !== active);
+            });
+        });
+    });
+</script>
