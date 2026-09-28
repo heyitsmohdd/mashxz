@@ -1,5 +1,6 @@
 ---
 import { getCollection } from "astro:content";
+import PostList from "../components/PostList.astro";
 import Page from "../layouts/Page.astro";
 
 const allPosts = (await getCollection("blog")).sort(
@@ -84,99 +85,11 @@ const workPosts = allPosts.filter((post) => post.data.category === "work");
             </div>
 
             <div id="panel-life">
-                {lifePosts.length === 0 ? (
-                    <p class="text-[#735232] text-sm py-4 italic">
-                        Nothing yet.
-                    </p>
-                ) : (
-                    <ul class="divide-y divide-[#e3d8be]">
-                        {lifePosts.map((post) => (
-                            <li class="py-3 flex items-baseline justify-between gap-4 flex-wrap group">
-                                <div class="flex items-baseline gap-2">
-                                    <span class="text-[#8a3e14] font-bold select-none">
-                                        »
-                                    </span>
-                                    <a
-                                        href={`/${post.id.replace(/\.md$/, "")}`}
-                                        class="text-[#0000cc] hover:underline font-bold text-base transition-colors"
-                                    >
-                                        {post.data.title}
-                                    </a>
-                                    <span class="text-xs text-[#6e5138]">
-                                        ({post.id.replace(/\.md$/, "")})
-                                    </span>
-                                </div>
-
-                                <div class="flex items-center gap-2 text-xs text-[#6e5138]">
-                                    <time
-                                        datetime={post.data.date.toISOString()}
-                                    >
-                                        {post.data.date.toLocaleDateString(
-                                            "en-US",
-                                            {
-                                                year: "numeric",
-                                                month: "short",
-                                                day: "numeric",
-                                            },
-                                        )}
-                                    </time>
-                                    <span>•</span>
-                                    <span class="text-[#8a3e14] font-semibold">
-                                        [{post.data.category}]
-                                    </span>
-                                </div>
-                            </li>
-                        ))}
-                    </ul>
-                )}
+                <PostList posts={lifePosts} />
             </div>
 
             <div id="panel-work" class="hidden">
-                {workPosts.length === 0 ? (
-                    <p class="text-[#735232] text-sm py-4 italic">
-                        Nothing yet.
-                    </p>
-                ) : (
-                    <ul class="divide-y divide-[#e3d8be]">
-                        {workPosts.map((post) => (
-                            <li class="py-3 flex items-baseline justify-between gap-4 flex-wrap group">
-                                <div class="flex items-baseline gap-2">
-                                    <span class="text-[#8a3e14] font-bold select-none">
-                                        »
-                                    </span>
-                                    <a
-                                        href={`/${post.id.replace(/\.md$/, "")}`}
-                                        class="text-[#0000cc] hover:underline font-bold text-base transition-colors"
-                                    >
-                                        {post.data.title}
-                                    </a>
-                                    <span class="text-xs text-[#6e5138]">
-                                        ({post.id.replace(/\.md$/, "")})
-                                    </span>
-                                </div>
-
-                                <div class="flex items-center gap-2 text-xs text-[#6e5138]">
-                                    <time
-                                        datetime={post.data.date.toISOString()}
-                                    >
-                                        {post.data.date.toLocaleDateString(
-                                            "en-US",
-                                            {
-                                                year: "numeric",
-                                                month: "short",
-                                                day: "numeric",
-                                            },
-                                        )}
-                                    </time>
-                                    <span>•</span>
-                                    <span class="text-[#8a3e14] font-semibold">
-                                        [{post.data.category}]
-                                    </span>
-                                </div>
-                            </li>
-                        ))}
-                    </ul>
-                )}
+                <PostList posts={workPosts} />
             </div>
         </section>
     </main>
