@@ -1,10 +1,9 @@
 ---
 title: "A Man Is Not One Thing"
 date: 2026-05-28
-description: "" 
-category: life 
+description: ""
+category: life
 ---
-
 
 I have often thought upon this matter of calling oneself a fan of another man.
 
@@ -21,7 +20,6 @@ Perhaps this is what I find more honest in admiration. It allows a man to remain
 I need not make him good in all things because I have found him good in one. I need not defend what ought not to be defended. Nor must I cast away what was genuinely valuable merely because I have discovered something in him that is not.
 
 There are men from whom I have taken an idea, a way of thinking, a piece of work. I have followed them for years, perhaps, but only in that narrow place where they have something to give me. Beyond it, I have little claim and little interest. Their private lives belong to them. Their mistakes belong to them. Their victories also belong to them.
-
 
 They are not characters written for my sake. They have their own lives to attend to, and I have mine.
 
