@@ -13,3 +13,18 @@ body {
 a:active {
     color: inherit;
 }
+
+.tab-btn {
+    background-color: #caa368;
+    color: #38200e;
+}
+
+.tab-btn:hover {
+    background-color: #bfa268;
+}
+
+.tab-btn[data-active="true"],
+.tab-btn[data-active="true"]:hover {
+    background-color: #38200e;
+    color: #caa368;
+}

@@ -68,27 +68,27 @@ const workPosts = allPosts.filter((post) => post.data.category === "work");
 
                 <div class="flex gap-2">
                     <button
-                        id="tab-life"
-                        class="tab-btn px-3 py-1 text-xs font-bold transition-colors bg-[#38200e] text-[#caa368] border border-[#2b180a] cursor-pointer"
+                        class="tab-btn px-3 py-1 text-xs font-bold transition-colors border border-[#2b180a] cursor-pointer"
                         data-tab="life"
+                        data-active="true"
                     >
                         life ({lifePosts.length})
                     </button>
                     <button
-                        id="tab-work"
-                        class="tab-btn px-3 py-1 text-xs font-bold transition-colors bg-[#caa368] text-[#38200e] hover:bg-[#bfa268] border border-[#2b180a] cursor-pointer"
+                        class="tab-btn px-3 py-1 text-xs font-bold transition-colors border border-[#2b180a] cursor-pointer"
                         data-tab="work"
+                        data-active="false"
                     >
                         work ({workPosts.length})
                     </button>
                 </div>
             </div>
 
-            <div id="panel-life">
+            <div data-tab-panel="life">
                 <PostList posts={lifePosts} />
             </div>
 
-            <div id="panel-work" class="hidden">
+            <div data-tab-panel="work" hidden>
                 <PostList posts={workPosts} />
             </div>
         </section>
@@ -97,25 +97,16 @@ const workPosts = allPosts.filter((post) => post.data.category === "work");
 
 <script>
     const tabs = document.querySelectorAll<HTMLButtonElement>(".tab-btn");
-    const panels = {
-        work: document.getElementById("panel-work"),
-        life: document.getElementById("panel-life"),
-    };
+    const panels = document.querySelectorAll<HTMLElement>("[data-tab-panel]");
 
     tabs.forEach((tab) => {
         tab.addEventListener("click", () => {
-            const active = tab.dataset.tab as "work" | "life";
-
-            tabs.forEach((t) => {
-                const isActive = t.dataset.tab === active;
-                t.classList.toggle("bg-[#38200e]", isActive);
-                t.classList.toggle("text-[#caa368]", isActive);
-                t.classList.toggle("bg-[#caa368]", !isActive);
-                t.classList.toggle("text-[#38200e]", !isActive);
+            tabs.forEach((candidate) => {
+                candidate.dataset.active = String(candidate === tab);
             });
 
-            Object.entries(panels).forEach(([key, panel]) => {
-                panel?.classList.toggle("hidden", key !== active);
+            panels.forEach((panel) => {
+                panel.hidden = panel.dataset.tabPanel !== tab.dataset.tab;
             });
         });
     });
