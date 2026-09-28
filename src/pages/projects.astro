@@ -1,5 +1,6 @@
 ---
-import "../styles/global.css";
+import CornerRail from "../components/CornerRail.astro";
+import Page from "../layouts/Page.astro";
 
 const projects = [
     {
@@ -18,72 +19,46 @@ const projects = [
 ];
 ---
 
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <link rel="icon" type="image/png" href="/favicon.png" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Projects — Shariq Attar</title>
-    </head>
-    <body class="bg-neutral-950 text-neutral-200 font-sans antialiased">
-        <div class="max-w-xl mx-auto px-6">
-            <nav class="pt-10">
-                <ul class="flex gap-6 text-sm">
-                    <li>
-                        <a
-                            href="/"
-                            class="text-neutral-500 hover:text-white transition-colors"
-                        >
-                            home
-                        </a>
-                    </li>
-                    <li>
-                        <a
-                            href="/blog"
-                            class="text-neutral-500 hover:text-white transition-colors"
-                        >
-                            blog
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/projects" class="text-white">
-                            projects
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+<Page title="Projects — mashxz.com" description="Things Shariq Attar has built">
+    <div class="flex flex-col md:flex-row relative">
+        <CornerRail />
 
-            <main class="py-20 space-y-12">
-                <section>
-                    <h1 class="text-2xl font-semibold text-white">
-                        stuff i built
-                    </h1>
-                    <p class="mt-2 text-neutral-400">stuff I built.</p>
-                </section>
+        <main class="flex-1 p-6 sm:p-10 space-y-6 bg-[#f5f3ec]">
+            <div class="flex items-center justify-between gap-6 pb-4 border-b-2 border-[#d6ba7f]">
+                <h1 class="text-3xl sm:text-4xl font-black text-[#2e1a0b] tracking-tight [text-shadow:2px_3px_4px_rgba(40,25,10,0.35)]">
+                    stuff i built
+                </h1>
+            </div>
 
-                <ul class="space-y-8">
-                    {projects.map((project) => (
-                        <li class="space-y-1">
-                            <div class="flex items-center gap-3">
+            <hr class="border-t border-[#caa368]" />
+
+            <ul class="divide-y divide-[#e3d8be]">
+                {projects.map((project) => (
+                    <li class="py-3">
+                        <div class="flex items-baseline justify-between gap-4 flex-wrap">
+                            <div class="flex items-baseline gap-2">
+                                <span class="text-[#8a3e14] font-bold select-none">
+                                    »
+                                </span>
                                 <a
                                     href={project.url}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    class="text-white hover:text-emerald-400 transition-colors"
+                                    class="text-[#0000cc] hover:underline font-bold text-base transition-colors"
                                 >
                                     {project.name}
                                 </a>
-                                <span class="text-xs text-neutral-600">
-                                    {project.status}
+                                <span class="text-xs text-[#6e5138]">
+                                    ({project.status})
                                 </span>
                             </div>
-                            <p class="text-sm text-neutral-400">
-                                {project.description}
-                            </p>
-                        </li>
-                    ))}
-                </ul>
-            </main>
-        </div>
-    </body>
-</html>
+                        </div>
+                        <p class="text-sm text-[#523419] mt-1 ml-6">
+                            {project.description}
+                        </p>
+                    </li>
+                ))}
+            </ul>
+        </main>
+    </div>
+</Page>
