@@ -1,7 +1,6 @@
 ---
 title: "A Man Is Not One Thing"
 date: 2026-05-28
-description: ""
 category: life
 ---
 

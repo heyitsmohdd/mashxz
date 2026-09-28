@@ -15,10 +15,7 @@ const { post } = Astro.props;
 const { Content } = await render(post);
 ---
 
-<Page
-    title={`${post.data.title} — mashxz.com`}
-    description={post.data.description || post.data.title}
->
+<Page title={`${post.data.title} — mashxz.com`}>
     <div class="flex flex-col md:flex-row relative">
         <CornerRail />
 
