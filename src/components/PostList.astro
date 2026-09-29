@@ -6,8 +6,6 @@ interface Props {
 }
 
 const { posts } = Astro.props;
-
-const getSlug = (post: CollectionEntry<"blog">) => post.id.replace(/\.md$/, "");
 ---
 
 {posts.length === 0 ? (
@@ -15,18 +13,16 @@ const getSlug = (post: CollectionEntry<"blog">) => post.id.replace(/\.md$/, "");
 ) : (
     <ul class="divide-y divide-[#e3d8be]">
         {posts.map((post) => (
-            <li class="py-3 flex items-baseline justify-between gap-4 flex-wrap group">
+            <li class="py-3 flex items-baseline justify-between gap-4 flex-wrap">
                 <div class="flex items-baseline gap-2">
                     <span class="text-[#8a3e14] font-bold select-none">»</span>
                     <a
-                        href={`/${getSlug(post)}`}
-                        class="text-[#0000cc] hover:underline font-bold text-base transition-colors"
+                        href={`/${post.id}`}
+                        class="text-[#0000cc] hover:underline font-bold text-base"
                     >
                         {post.data.title}
                     </a>
-                    <span class="text-xs text-[#6e5138]">
-                        ({getSlug(post)})
-                    </span>
+                    <span class="text-xs text-[#6e5138]">({post.id})</span>
                 </div>
 
                 <div class="flex items-center gap-2 text-xs text-[#6e5138]">
