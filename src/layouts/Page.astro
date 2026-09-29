@@ -22,6 +22,7 @@ const currentPath = Astro.url.pathname.replace(/\/+$/, "") || "/";
         <link rel="icon" href="/favicon-full.ico" sizes="any" />
         <link rel="icon" type="image/png" href="/favicon-full-32.png" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="preload" as="image" href="/stars.webp" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         {description && <meta name="description" content={description} />}
         <title>{title}</title>
