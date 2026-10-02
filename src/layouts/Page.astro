@@ -8,12 +8,9 @@ interface Props {
 
 const { title, description } = Astro.props;
 
-const navItems = [
-    { label: "home", href: "/" },
-    { label: "builds", href: "/projects" },
-];
-
 const currentPath = Astro.url.pathname.replace(/\/+$/, "") || "/";
+const isHome = currentPath === "/";
+const linkClass = "hover:underline text-[#2e1a0b]";
 ---
 
 <html lang="en">
@@ -31,30 +28,21 @@ const currentPath = Astro.url.pathname.replace(/\/+$/, "") || "/";
         <div class="max-w-4xl mx-auto shadow-2xl border border-[#2b180a] bg-[#f5f3ec] overflow-hidden">
             <header class="bg-[#caa368] border-b-2 border-[#38200e] px-4 py-2 flex items-center justify-between text-xs font-bold text-[#38200e] select-none">
                 <nav class="flex items-center gap-3 sm:gap-6 flex-wrap [text-shadow:1px_1px_2px_rgba(0,0,0,0.25)]">
-                    {navItems.map((item) => (
-                        <a
-                            href={item.href}
-                            class={
-                                currentPath === item.href
-                                    ? "hover:underline text-[#2e1a0b] underline"
-                                    : "hover:underline text-[#2e1a0b]"
-                            }
-                        >
-                            {item.label}
-                        </a>
-                    ))}
+                    <a
+                        href="/"
+                        class={isHome ? `${linkClass} underline` : linkClass}
+                    >
+                        home
+                    </a>
                     <a
                         href="https://github.com/heyitsmohdd"
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="hover:underline text-[#2e1a0b]"
+                        class={linkClass}
                     >
                         github
                     </a>
-                    <a
-                        href="mailto:mashxz@poke.com"
-                        class="hover:underline text-[#2e1a0b]"
-                    >
+                    <a href="mailto:mashxz@poke.com" class={linkClass}>
                         e-mail
                     </a>
                 </nav>
